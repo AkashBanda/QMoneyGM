@@ -1,3 +1,4 @@
+- hosts: ALL
 - name: Audit Report Role - Load Average
   tasks:
     - name: Get load average
