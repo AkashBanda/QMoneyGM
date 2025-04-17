@@ -1,5 +1,6 @@
 - hosts: all
   name: Audit Report Role - Load Average
+  gather_facts: false
   tasks:
     - name: Get load average
       shell: "cat /proc/loadavg | awk '{print $1}'"
