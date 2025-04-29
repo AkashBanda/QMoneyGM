@@ -1,6 +1,9 @@
-- hosts: all
-  name: Audit Report Role - Load Average
-#  gather_facts: false
+---
+- name: Audit Report Role - Load Average
+  hosts: sshuser
+  vars_files:
+    - group_vars/audit-report-variables.yml
+  become: yes
   tasks:
     - name: Get load average
       shell: "cat /proc/loadavg | awk '{print $1}'"
@@ -9,6 +12,6 @@
     - name: Save load average to a file
       lineinfile:
         line: "{{ loadresult.stdout }}"
-        path: "/root/Ansible/QMoneyGM/Load/{{ ansible_default_ipv4.address }}/Loadeverage.yml"
+        path: "/data/Audit_Report/QCellGM/Load/{{ ansible_default_ipv4.address }}/Loadeverage.yml"
         create: yes
       delegate_to: localhost
